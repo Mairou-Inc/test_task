@@ -6,6 +6,8 @@ docker-compose up --build
 ```
 
 
+### Примеры
+
 Список статей:
 ```
 curl http://127.0.0.1:8000/api/articles/
