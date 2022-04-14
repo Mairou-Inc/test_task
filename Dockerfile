@@ -1,17 +1,14 @@
-FROM python:3.9.5-slim
-
-
-RUN apt-get update && apt-get install
-
-RUN apt-get install -y \
-  libpq-dev \
-  gcc \
-  && apt-get clean
-    
-
-RUN python -m pip install --upgrade pip
-
+FROM python:3.7
+ENV PYTHONUNBUFFERED 1
+RUN mkdir /code
 WORKDIR /code
-COPY requirements.txt requirements.txt
-RUN python -m pip install -r requirements.txt
-COPY . /code/
+ADD requirements.txt /code/
+
+RUN apt-get update
+RUN apt-get install -y postgresql 
+RUN apt-get install libpq-dev gcc
+RUN apt-get install -y python3-dev
+RUN apt-get install -y python3-psycopg2 
+
+RUN pip3 install -r requirements.txt
+ADD ./ /code/
