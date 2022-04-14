@@ -1,13 +1,10 @@
-FROM python:3.8-slim
-  
-RUN apt-get update && apt-get install
+FROM python:3.9.5-slim
 
-RUN apt-get install -y \
-  libpq-dev \
-  libmariadb-dev-compat \
-  libmariadb-dev \
-  gcc \
-  && apt-get clean
+
+RUN apt-get update \
+    && apt-get -y install libpq-dev gcc \
+    && pip install psycopg2
+    
 
 RUN python -m pip install --upgrade pip
 
